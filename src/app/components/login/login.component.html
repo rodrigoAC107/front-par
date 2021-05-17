@@ -1,0 +1,32 @@
+<div class="login-main">
+    <div class="login-content">
+        <div class="login-logo">
+            <div class="login-content-par">
+                <div class="login-text-par">
+                    PAR
+                </div>
+                <div class="login-text-leyenda">
+                    <p>Programa</p>
+                    <p>Alimentar</p>
+                    <p>Riojano</p>
+                </div>
+            </div>
+        </div>
+        <div class="login-form">
+                <div class="login-form__header">
+                    Ingrese sus credenciales para inciar sesión
+                </div>
+                <form (submit)="submit($event)" #LoginForm="ngForm">
+                    <div class="login-form__email">
+                        <label for="email">Email</label>
+                        <input type="text" name="email">
+                    </div>
+                    <div class="login_form__password">
+                        <label for="password">Password</label>
+                        <input type="password" name="password">
+                    </div>
+                    <button class="login-form__btn">Inciar Sesión</button>
+                </form>
+        </div>
+    </div>
+</div>

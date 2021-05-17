@@ -1,0 +1,65 @@
+<ng-template #contenido let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Titulo Modal</h4>
+        <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        Este es el contenido de este modal.
+        Este es el contenido de este modal.
+        Este es el contenido de este modal.
+        Este es el contenido de este modal.
+        Este es el contenido de este modal.
+        Este es el contenido de este modal.
+        Este es el contenido de este modal.
+        Este es el contenido de este modal.
+        Este es el contenido de este modal.
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" (click)="modal.close()">Cerar</button>
+        <button type="button" class="btn btn-success" (click)="modal.close()">Crear</button>
+    </div>
+</ng-template>
+
+<div class="general-content">
+    <div class="title">
+        <h1>Beneficiarios</h1>
+        <div class="search">
+            <button class="search__add" (click)="open(contenido)">
+                <i class="far fa-plus-square fa-lg"></i>
+                Agregar Beneficiario
+            </button>
+            <input type="text" placeholder="Search...">
+            <button class="search__btn"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+    <hr>
+    <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre y Apellido</th>
+                    <th>Dni</th>
+                    <th>Tipo Sangre</th>
+                    <th>Direccion</th>
+                    <th>Telefono</th>
+                    <th colspan="2">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Rodrigo Acosta</td>
+                    <td>45654654</td>
+                    <td>o+</td>
+                    <td>Limache</td>
+                    <td>4245514654</td>
+                    <td>
+                        <i class="far fa-trash-alt fa-lg"></i>
+                        <i class="far fa-edit fa-lg"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

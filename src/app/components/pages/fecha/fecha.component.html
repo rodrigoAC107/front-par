@@ -1,8 +1,100 @@
+<ng-template #contenidoAdd let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Agregar Fechas</h4>
+        <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="fechaFormAdd" (ngSubmit)="onAdd()">
+            <div class="row">
+                <div class="col-12 my-1">
+                    <label for="accreditation">Acreditación</label>
+                    <input type="text" class="form-control" formControlName="accreditation" required>
+                    <div *ngIf="accreditationAdd.invalid && (accreditationAdd.dirty || accreditationAdd.touched)" class="alert alert-danger my-2">
+                        <div *ngIf="accreditationAdd.errors?.required">
+                            El campo es requerido
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 my-1">
+                    <label for="performance">Rendimiento</label>
+                    <input type="text" class="form-control" formControlName="performance" required>
+                    <div *ngIf="performanceAdd.invalid && (performanceAdd.dirty || performanceAdd.touched)" class="alert alert-danger my-2">
+                        <div *ngIf="performanceAdd.errors?.required">
+                            El campo es requerido
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 my-1">
+                    <label for="expiration">Vencimiento</label>
+                    <input type="text" class="form-control" formControlName="expiration" required>
+                    <div *ngIf="expirationAdd.invalid && (expirationAdd.dirty || expirationAdd.touched)" class="alert alert-danger my-2">
+                        <div *ngIf="expirationAdd.errors?.required">
+                            El campo es requerido
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 d-flex justify-content-end">
+                <button type="button" class="mx-2 btn btn-outline-danger" (click)="modal.close()">Cerrar</button>
+                <button type="submit" class="ml-2 btn btn-success" [disabled]="!fechaFormAdd.valid">Crear</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<ng-template #contenidoEdit let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Editar Fechas</h4>
+        <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="fechaFormEdit" (ngSubmit)="onEdit()">
+            <div class="row">
+                <div class="col-12 my-1">
+                    <label for="accreditation">Acreditación</label>
+                    <input type="text" class="form-control" formControlName="accreditation">
+                    <div *ngIf="accreditationEdit.invalid && (accreditationEdit.dirty || accreditationEdit.touched)" class="alert alert-danger my-2">
+                        <div *ngIf="accreditationEdit.errors?.required">
+                            El campo es requerido
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 my-1">
+                    <label for="performance">Rendimiento</label>
+                    <input type="text" class="form-control" formControlName="performance">
+                    <div *ngIf="performanceEdit.invalid && (performanceEdit.dirty || performanceEdit.touched)" class="alert alert-danger my-2">
+                        <div *ngIf="performanceEdit.errors?.required">
+                            El campo es requerido
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 my-1">
+                    <label for="expiration">Vencimiento</label>
+                    <input type="text" class="form-control" formControlName="expiration">
+                    <div *ngIf="expirationEdit.invalid && (expirationEdit.dirty || expirationEdit.touched)" class="alert alert-danger my-2">
+                        <div *ngIf="expirationEdit.errors?.required">
+                            El campo es requerido
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 d-flex justify-content-end">
+                <button type="button" class="mx-2 btn btn-outline-danger" (click)="modal.close()">Cerrar</button>
+                <button type="submit" class="ml-2 btn btn-success" [disabled]="!fechaFormEdit.valid">Editar</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
 <div class="general-content">
     <div class="title">
         <h1>Fechas</h1>
         <div class="search">
-            <button class="search__add">
+            <button class="search__add" (click)="add(contenidoAdd)">
                 <i class="far fa-plus-square fa-lg"></i>
                 Agregar Fechas
             </button>
@@ -12,7 +104,7 @@
     <div class="content-fechas">
         <div class="fecha">
             <div class="icon">
-                <i class="far fa-edit"></i>
+                <i class="far fa-edit" (click)="edit(contenidoEdit)"></i>
             </div>
             <div class="fecha-titulo">
                 <h3>Acreditacion</h3>
@@ -21,7 +113,7 @@
         </div>
         <div class="fecha">
             <div class="icon">
-                <i class="far fa-edit"></i>
+                <i class="far fa-edit" (click)="edit(contenidoEdit)"></i>
             </div>
             <div class="fecha-titulo">
                 <h3>Rendimiento</h3>
@@ -30,7 +122,7 @@
         </div>
         <div class="fecha">
             <div class="icon">
-                <i class="far fa-edit"></i>
+                <i class="far fa-edit" (click)="edit(contenidoEdit)"></i>
             </div>
             <div class="fecha-titulo">
                 <h3>Vencimiento</h3>

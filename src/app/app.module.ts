@@ -16,7 +16,8 @@ import { ProductoComponent } from './components/pages/producto/producto.componen
 import { RecetaComponent } from './components/pages/receta/receta.component';
 import { FechaComponent } from './components/pages/fecha/fecha.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { ProfileComponent } from './components/pages/profile/profile.component';
 
 
 @NgModule({
@@ -34,12 +35,14 @@ import { FormsModule } from '@angular/forms';
     ProductoComponent,
     RecetaComponent,
     FechaComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -316,7 +316,8 @@ button {
   color: #f7101b;
 }
 
-.search__add {
+.search__add,
+.confirm_password {
   background-color: #f7101b;
   border: 1px solid #f7101b;
   padding: 5px;
@@ -330,7 +331,8 @@ button {
   margin: 0 5px;
 }
 
-.search__add:hover {
+.search__add:hover,
+.confirm_password:hover {
   background-color: #d8141d;
 }
 
@@ -431,3 +433,5 @@ button {
 .fecha-titulo h4 {
   color: #333131;
 }
+
+

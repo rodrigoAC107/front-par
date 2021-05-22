@@ -1,8 +1,90 @@
+<ng-template #contenidoAdd let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Agregar Fechas</h4>
+        <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="ProductoFormAdd" (ngSubmit)="onAdd()">
+            <div class="row">
+                <div class="col-12 my-1">
+                    <label for="accreditation">Nombre</label>
+                    <input type="text" class="form-control" formControlName="name" required>
+                    <div *ngIf="nameAdd.invalid && (nameAdd.dirty || nameAdd.touched)" class="alert alert-danger my-2">
+                        <div *ngIf="nameAdd.errors?.required">
+                            El campo es requerido
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 my-1">
+                    <label for="performance">Tipo</label>
+                    <input type="text" class="form-control" formControlName="type" required>
+                    <div *ngIf="typeAdd.invalid && (typeAdd.dirty || typeAdd.touched)" class="alert alert-danger my-2">
+                        <div *ngIf="typeAdd.errors?.required">
+                            El campo es requerido
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 my-1">
+                    <label for="special">Especial</label>
+                    <input type="checkbox" class="form-control" formControlName="special">
+                </div>
+            </div>
+            <div class="mt-4 d-flex justify-content-end">
+                <button type="button" class="mx-2 btn btn-outline-danger" (click)="modal.close()">Cerrar</button>
+                <button type="submit" class="ml-2 btn btn-success" [disabled]="!ProductoFormAdd.valid">Crear</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<ng-template #contenidoEdit let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Editar Fechas</h4>
+        <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="ProductoFormEdit" (ngSubmit)="onEdit()">
+            <div class="row">
+                <div class="col-12 my-1">
+                    <label for="accreditation">Nombre</label>
+                    <input type="text" class="form-control" formControlName="name">
+                    <div *ngIf="nameEdit.invalid && (nameEdit.dirty || nameEdit.touched)" class="alert alert-danger my-2">
+                        <div *ngIf="nameEdit.errors?.required">
+                            El campo es requerido
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 my-1">
+                    <label for="performance">Tipo</label>
+                    <input type="text" class="form-control" formControlName="tpye">
+                    <div *ngIf="typeEdit.invalid && (typeEdit.dirty || typeEdit.touched)" class="alert alert-danger my-2">
+                        <div *ngIf="typeEdit.errors?.required">
+                            El campo es requerido
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 my-1">
+                    <label for="expiration">Especial</label>
+                    <input type="checkbox" class="form-control" formControlName="special">
+                </div>
+            </div>
+            <div class="mt-4 d-flex justify-content-end">
+                <button type="button" class="mx-2 btn btn-outline-danger" (click)="modal.close()">Cerrar</button>
+                <button type="submit" class="ml-2 btn btn-success" [disabled]="!ProductoFormEdit.valid">Editar</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
 <div class="general-content">
     <div class="title">
         <h1>Productos</h1>
         <div class="search">
-            <button class="search__add">
+            <button class="search__add" (click)="add(contenidoAdd)">
                 <i class="far fa-plus-square fa-lg"></i>
                 Agregar Producto
             </button>
@@ -27,8 +109,8 @@
                     <td>Harina</td>
                     <td>Si / No</td>
                     <td>
+                        <i class="far fa-edit fa-lg" (click)="edit(contenidoAdd)"></i>
                         <i class="far fa-trash-alt fa-lg"></i>
-                        <i class="far fa-edit fa-lg"></i>
                     </td>
                 </tr>
             </tbody>

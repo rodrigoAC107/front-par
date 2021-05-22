@@ -9,6 +9,7 @@ import { FechaComponent } from './components/pages/fecha/fecha.component';
 import { ProductoComponent } from './components/pages/producto/producto.component';
 import { RecetaComponent } from './components/pages/receta/receta.component';
 import { MainComponent } from './components/main/main.component';
+import { ProfileComponent } from './components/pages/profile/profile.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
           { path: 'fechas', component: FechaComponent },
           { path: 'productos', component: ProductoComponent },
           { path: 'recetas', component: RecetaComponent },
+          { path: 'perfil', component: ProfileComponent },
         ]
       },
     ]

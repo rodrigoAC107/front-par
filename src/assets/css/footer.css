@@ -1,0 +1,12 @@
+.footer-content {
+  position: relative;
+  float: none;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.footer-content p {
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}

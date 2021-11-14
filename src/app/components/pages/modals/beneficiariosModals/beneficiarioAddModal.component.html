@@ -1,0 +1,99 @@
+<ng-template #contenidoAdd let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Agregar Beneficiario</h4>
+        <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="beneficiarioFormAdd" (ngSubmit)="onAdd()">
+            <div class="row">
+                <div class="col-6 my-1">
+                    <label for="name">Nombre</label>
+                    <input type="text" class="form-control" formControlName="name" required>
+                    <div *ngIf="nameAdd.invalid && (nameAdd.dirty || nameAdd.touched)" class="alert alert-danger my-2">
+                        <div *ngIf="nameAdd.errors?.required">
+                            El nombre es requerido
+                        </div>
+                        <div *ngIf="nameAdd.errors?.minlength">
+                            El nombre debe tener al menos 4 caracteres
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 my-1">
+                    <label for="lastname">Apellido</label>
+                    <input type="text" class="form-control" formControlName="lastname" required>
+                    <div *ngIf="lastnameAdd.invalid && (lastnameAdd.dirty || lastnameAdd.touched)"
+                        class="alert alert-danger my-2">
+                        <div *ngIf="lastnameAdd.errors?.required">
+                            El apellido es requerido
+                        </div>
+                        <div *ngIf="lastnameAdd.errors?.minlength">
+                            El apellido debe tener al menos 4 caracteres
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 my-1">
+                    <label for="dni">DNI</label>
+                    <input type="dni" class="form-control" formControlName="dni" required>
+                    <div *ngIf="dniAdd.invalid && (dniAdd.dirty || dniAdd.touched)"
+                        class="alert alert-danger my-2">
+                        <div *ngIf="dniAdd.errors?.required">
+                            El dni es requerido
+                        </div>
+                        <div *ngIf="dniAdd.errors?.minlength">
+                            El dni debe tener al menos 8 caracteres
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 my-1">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" formControlName="email" required>
+                    <div *ngIf="emailAdd.invalid && (emailAdd.dirty || emailAdd.touched)"
+                        class="alert alert-danger my-2">
+                        <div *ngIf="emailAdd.errors?.required">
+                            El email es requerido
+                        </div>
+                        <div *ngIf="emailAdd.errors?.minlength">
+                            El email debe tener al menos 10 caracteres
+                        </div>
+                        <div *ngIf="emailAdd.errors?.pattern">
+                            El valor no es un email
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 my-1">
+                    <label for="address">Dirección</label>
+                    <input type="text" class="form-control" formControlName="address" required>
+                    <div *ngIf="addressAdd.invalid && (addressAdd.dirty || addressAdd.touched)"
+                        class="alert alert-danger my-2">
+                        <div *ngIf="addressAdd.errors?.required">
+                            La dirección es requerida
+                        </div>
+                        <div *ngIf="addressAdd.errors?.minlength">
+                            La dirección debe tener al menos 5 caracteres
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 my-1">
+                    <label for="location">Localidad</label>
+                    <select class="form-control" formControlName="location_id" required>
+                        <option *ngFor="let localidad of localidades" [value]="localidad.id"> {{ localidad.name }}
+                        </option>
+                    </select>
+                    <div *ngIf="localidadAdd.invalid && (localidadAdd.dirty || localidadAdd.touched)"
+                        class="alert alert-danger my-2">
+                        <div *ngIf="localidadAdd.errors?.required">
+                            La localidad es requerida
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 d-flex justify-content-end">
+                <button type="button" class="mx-2 btn btn-outline-danger" (click)="modal.close()">Cerrar</button>
+                <button type="submit" class="ml-2 btn btn-success"
+                    [disabled]="!beneficiarioFormAdd.valid">Crear</button>
+            </div>
+        </form>
+    </div>
+</ng-template>

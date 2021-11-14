@@ -1,0 +1,37 @@
+.fecha {
+  float: left;
+  margin: 5px 15px;
+  border: 1px solid #aca1a1;
+  border-radius: 10px;
+  width: 30%;
+  height: 200px;
+  text-align: center;
+  box-shadow: -5px 5px 10px gray;
+}
+
+.fecha .icon {
+  text-align: end;
+  padding: 10px;
+  font-size: 20px;
+  color: #424242;
+
+}
+
+.fecha .icon:hover {
+  color: #f7101b;
+  cursor: pointer;
+}
+
+.fecha-titulo {
+  width: 200px;
+  margin: 20px auto;
+}
+
+.fecha-titulo h3 {
+  color: #f7101b;
+  margin: 5px 0;
+}
+
+.fecha-titulo h4 {
+  color: #333131;
+}

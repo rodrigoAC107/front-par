@@ -18,6 +18,10 @@ import { FechaComponent } from './components/pages/fecha/fecha.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { ProfileComponent } from './components/pages/profile/profile.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CanActiveLoginGuard } from './helpers/CanActiveLoginGuard';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { BeneficiarioAddModalComponent } from './components/pages/modals/beneficiariosModals/beneficiarioAddModal.component';
 
 
 @NgModule({
@@ -36,15 +40,18 @@ import { ProfileComponent } from './components/pages/profile/profile.component';
     RecetaComponent,
     FechaComponent,
     ProfileComponent,
+    BeneficiarioAddModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgxPaginationModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [CanActiveLoginGuard],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -10,14 +10,15 @@ import { ProductoComponent } from './components/pages/producto/producto.componen
 import { RecetaComponent } from './components/pages/receta/receta.component';
 import { MainComponent } from './components/main/main.component';
 import { ProfileComponent } from './components/pages/profile/profile.component';
+import { CanActiveLoginGuard } from './helpers/CanActiveLoginGuard';
 
 
 const routes: Routes = [
   {
-    path: 'main', component: MainComponent,
+    path: 'main', component: MainComponent, canActivate: [CanActiveLoginGuard],
     children: [
       {
-        path: 'content', component: ContentComponent,
+        path: 'content', component: ContentComponent, canActivateChild: [CanActiveLoginGuard],
         children: [
           { path: 'home', component: HomeComponent },
           { path: 'beneficiarios', component: BeneficiarioComponent },

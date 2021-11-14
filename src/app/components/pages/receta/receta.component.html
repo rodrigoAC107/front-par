@@ -11,7 +11,8 @@
                 <div class="col-12 my-1">
                     <label for="accreditation">Titulo</label>
                     <input type="text" class="form-control" formControlName="title" required>
-                    <div *ngIf="titleAdd.invalid && (titleAdd.dirty || titleAdd.touched)" class="alert alert-danger my-2">
+                    <div *ngIf="titleAdd.invalid && (titleAdd.dirty || titleAdd.touched)"
+                        class="alert alert-danger my-2">
                         <div *ngIf="titleAdd.errors?.required">
                             El campo es requerido
                         </div>
@@ -20,7 +21,8 @@
                 <div class="col-12 my-1">
                     <label for="performance">Descripción</label>
                     <input type="text" class="form-control" formControlName="description" required>
-                    <div *ngIf="descriptionAdd.invalid && (descriptionAdd.dirty || descriptionAdd.touched)" class="alert alert-danger my-2">
+                    <div *ngIf="descriptionAdd.invalid && (descriptionAdd.dirty || descriptionAdd.touched)"
+                        class="alert alert-danger my-2">
                         <div *ngIf="descriptionAdd.errors?.required">
                             El campo es requerido
                         </div>
@@ -48,7 +50,8 @@
                 <div class="col-12 my-1">
                     <label for="accreditation">Titulo</label>
                     <input type="text" class="form-control" formControlName="title">
-                    <div *ngIf="titleEdit.invalid && (titleEdit.dirty || titleEdit.touched)" class="alert alert-danger my-2">
+                    <div *ngIf="titleEdit.invalid && (titleEdit.dirty || titleEdit.touched)"
+                        class="alert alert-danger my-2">
                         <div *ngIf="titleEdit.errors?.required">
                             El campo es requerido
                         </div>
@@ -57,7 +60,8 @@
                 <div class="col-12 my-1">
                     <label for="performance">Descripción</label>
                     <input type="text" class="form-control" formControlName="description">
-                    <div *ngIf="descriptionEdit.invalid && (descriptionEdit.dirty || descriptionEdit.touched)" class="alert alert-danger my-2">
+                    <div *ngIf="descriptionEdit.invalid && (descriptionEdit.dirty || descriptionEdit.touched)"
+                        class="alert alert-danger my-2">
                         <div *ngIf="descriptionEdit.errors?.required">
                             El campo es requerido
                         </div>
@@ -85,25 +89,23 @@
         </div>
     </div>
     <hr>
-    <div class="table">
-        <table>
-            <thead>
-                <tr>
-                    <th>Titulo</th>
-                    <th>Descripcion</th>
-                    <th colspan="2">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Canelones</td>
-                    <td>Como hace canelones</td>
-                    <td>
-                        <i class="far fa-edit fa-lg" (click)="edit(contenidoEdit)"></i>
-                        <i class="far fa-trash-alt fa-lg"></i>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titulo</th>
+                <th>Descripcion</th>
+                <th colspan="2">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Canelones</td>
+                <td>Como hace canelones</td>
+                <td>
+                    <i class="far fa-edit fa-lg" (click)="edit(contenidoEdit)"></i>
+                    <i class="far fa-trash-alt fa-lg"></i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

@@ -1,73 +1,4 @@
-<ng-template #contenidoAdd let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title">Agregar Beneficiario</h4>
-        <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <form [formGroup]="beneficiarioFormAdd" (ngSubmit)="onAdd()">
-            <div class="row">
-                <div class="col-12 my-1">
-                    <label for="name">Nombre</label>
-                    <input type="text" class="form-control" formControlName="name" required>
-                    <div *ngIf="nameAdd.invalid && (nameAdd.dirty || nameAdd.touched)" class="alert alert-danger my-2">
-                        <div *ngIf="nameAdd.errors?.required">
-                            El nombre es requerido
-                        </div>
-                        <div *ngIf="nameAdd.errors?.minlength">
-                            El nombre debe tener al menos 4 caracteres
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 my-1">
-                    <label for="lastname">Apellido</label>
-                    <input type="text" class="form-control" formControlName="lastname" required>
-                    <div *ngIf="lastnameAdd.invalid && (lastnameAdd.dirty || lastnameAdd.touched)" class="alert alert-danger my-2">
-                        <div *ngIf="lastnameAdd.errors?.required">
-                            El apellido es requerido
-                        </div>
-                        <div *ngIf="lastnameAdd.errors?.minlength">
-                            El apellido debe tener al menos 4 caracteres
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 my-1">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" formControlName="email" required>
-                    <div *ngIf="emailAdd.invalid && (emailAdd.dirty || emailAdd.touched)" class="alert alert-danger my-2">
-                        <div *ngIf="emailAdd.errors?.required">
-                            El email es requerido
-                        </div>
-                        <div *ngIf="emailAdd.errors?.minlength">
-                            El email debe tener al menos 10 caracteres
-                        </div>
-                        <div *ngIf="emailAdd.errors?.pattern">
-                            El valor no es un email
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 my-1">
-                    <label for="address">Dirección</label>
-                    <input type="text" class="form-control" formControlName="address" required>
-                    <div *ngIf="addressAdd.invalid && (addressAdd.dirty || addressAdd.touched)" class="alert alert-danger my-2">
-                        <div *ngIf="addressAdd.errors?.required">
-                            La dirección es requerida
-                        </div>
-                        <div *ngIf="addressAdd.errors?.minlength">
-                            La dirección debe tener al menos 5 caracteres
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-4 d-flex justify-content-end">
-                <button type="button" class="mx-2 btn btn-outline-danger" (click)="modal.close()">Cerrar</button>
-                <button type="submit" class="ml-2 btn btn-success" [disabled]="!beneficiarioFormAdd.valid">Editar</button>
-            </div>
-        </form>
-    </div>
-</ng-template>
-
+<app-beneficiario-add-modal [open]="openAdd"></app-beneficiario-add-modal>
 <ng-template #contenidoEdit let-modal>
     <div class="modal-header">
         <h4 class="modal-title">Editar Beneficiario</h4>
@@ -81,7 +12,8 @@
                 <div class="col-12 my-1">
                     <label for="nombre">Nombre</label>
                     <input type="text" id="name" class="form-control" formControlName="name">
-                    <div *ngIf="nameEdit.invalid && (nameEdit.dirty || nameEdit.touched)" class="alert alert-danger my-2">
+                    <div *ngIf="nameEdit.invalid && (nameEdit.dirty || nameEdit.touched)"
+                        class="alert alert-danger my-2">
                         <div *ngIf="nameEdit.errors?.required">
                             El nombre es requerido
                         </div>
@@ -93,7 +25,8 @@
                 <div class="col-12 my-1">
                     <label for="nombre">Apellido</label>
                     <input type="text" class="form-control" formControlName="lastname">
-                    <div *ngIf="lastnameEdit.invalid && (lastnameEdit.dirty || lastnameEdit.touched)" class="alert alert-danger my-2">
+                    <div *ngIf="lastnameEdit.invalid && (lastnameEdit.dirty || lastnameEdit.touched)"
+                        class="alert alert-danger my-2">
                         <div *ngIf="lastnameEdit.errors?.required">
                             El apellido es requerido
                         </div>
@@ -105,7 +38,8 @@
                 <div class="col-12 my-1">
                     <label for="nombre">Email</label>
                     <input type="text" class="form-control" formControlName="email">
-                    <div *ngIf="emailEdit.invalid && (emailEdit.dirty || emailEdit.touched)" class="alert alert-danger my-2">
+                    <div *ngIf="emailEdit.invalid && (emailEdit.dirty || emailEdit.touched)"
+                        class="alert alert-danger my-2">
                         <div *ngIf="emailEdit.errors?.required">
                             El email es requerido
                         </div>
@@ -120,7 +54,8 @@
                 <div class="col-12 my-1">
                     <label for="nombre">Dirección</label>
                     <input type="text" class="form-control" formControlName="address">
-                    <div *ngIf="addressEdit.invalid && (addressEdit.dirty || addressEdit.touched)" class="alert alert-danger my-2">
+                    <div *ngIf="addressEdit.invalid && (addressEdit.dirty || addressEdit.touched)"
+                        class="alert alert-danger my-2">
                         <div *ngIf="addressEdit.errors?.required">
                             La dirección es requerida
                         </div>
@@ -129,10 +64,19 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-12 my-1">
+                    <label for="nombre">Dirección</label>
+                    <select class="form-control">
+                        <option *ngFor="let localidad of localidades" value="{{ localidad.id }}"> {{ localidad.name }}
+                        </option>
+                    </select>
+
+                </div>
             </div>
             <div class="mt-4 d-flex justify-content-end">
                 <button type="button" class="mx-2 btn btn-outline-danger" (click)="modal.close()">Cerrar</button>
-                <button type="submit" class="ml-2 btn btn-success" [disabled]="!beneficiarioFormEdit.valid">Crear</button>
+                <button type="submit" class="ml-2 btn btn-success"
+                    [disabled]="!beneficiarioFormEdit.valid">Editar</button>
             </div>
         </form>
     </div>
@@ -142,7 +86,7 @@
     <div class="title">
         <h1>Beneficiarios</h1>
         <div class="search">
-            <button class="search__add" (click)="add(contenidoAdd)">
+            <button class="search__add" (click)="openAdd = true">
                 <i class="far fa-plus-square fa-lg"></i>
                 Agregar Beneficiario
             </button>
@@ -151,31 +95,38 @@
         </div>
     </div>
     <hr>
-    <div class="table">
-        <table>
-            <thead>
-                <tr>
-                    <th>Nombre y Apellido</th>
-                    <th>Dni</th>
-                    <th>Tipo Sangre</th>
-                    <th>Direccion</th>
-                    <th>Telefono</th>
-                    <th colspan="2">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Rodrigo Acosta</td>
-                    <td>45654654</td>
-                    <td>o+</td>
-                    <td>Limache</td>
-                    <td>4245514654</td>
-                    <td>
-                        <i class="far fa-edit fa-lg" (click)="edit(contenidoEdit)"></i>
-                        <i class="far fa-trash-alt fa-lg"></i>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre y Apellido</th>
+                <th>Dni</th>
+                <th>Email</th>
+                <th>Dirección</th>
+                <th colspan="2">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr
+                *ngFor="let beneficiario of beneficiarios | paginate: { itemsPerPage: perPage, currentPage: page, totalItems: total }">
+                <td>{{ beneficiario.id }}</td>
+                <td>{{ beneficiario.name }} {{ beneficiario.lastname }}</td>
+                <td>{{ beneficiario.dni }}</td>
+                <td>{{ beneficiario.email }}</td>
+                <td>{{ beneficiario.address }}</td>
+                <td>
+                    <i class="far fa-edit fa-lg" (click)="edit(contenidoEdit)"></i>
+                    <i class="far fa-trash-alt fa-lg"></i>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>
+                    <pagination-controls [previousLabel]="'Ant'" [nextLabel]="'Sig'" (pageChange)="pageChanged($event)">
+                    </pagination-controls>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
 </div>

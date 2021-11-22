@@ -1,21 +1,21 @@
-<ng-template #contenidoAdd let-modal>
+<ng-template #contenidoEdit let-modal>
     <div class="modal-header">
         <h4 class="modal-title">Agregar Beneficiario</h4>
-        <button class="close" aria-label="close" type="button" (click)="modal.dismiss(false)">
+        <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
-        <form [formGroup]="beneficiarioFormAdd" (ngSubmit)="onAdd()">
+        <form [formGroup]="beneficiarioFormEdit" (ngSubmit)="onEdit()">
             <div class="row">
                 <div class="col-6 my-1">
                     <label for="name">Nombre</label>
                     <input type="text" class="form-control" formControlName="name" required>
-                    <div *ngIf="nameAdd.invalid && (nameAdd.dirty || nameAdd.touched)" class="alert alert-danger my-2">
-                        <div *ngIf="nameAdd.errors?.required">
+                    <div *ngIf="nameEdit.invalid && (nameEdit.dirty || nameEdit.touched)" class="alert alert-danger my-2">
+                        <div *ngIf="nameEdit.errors?.required">
                             El nombre es requerido
                         </div>
-                        <div *ngIf="nameAdd.errors?.minlength">
+                        <div *ngIf="nameEdit.errors?.minlength">
                             El nombre debe tener al menos 4 caracteres
                         </div>
                     </div>
@@ -23,12 +23,12 @@
                 <div class="col-6 my-1">
                     <label for="lastname">Apellido</label>
                     <input type="text" class="form-control" formControlName="lastname" required>
-                    <div *ngIf="lastnameAdd.invalid && (lastnameAdd.dirty || lastnameAdd.touched)"
+                    <div *ngIf="lastnameEdit.invalid && (lastnameEdit.dirty || lastnameEdit.touched)"
                         class="alert alert-danger my-2">
-                        <div *ngIf="lastnameAdd.errors?.required">
+                        <div *ngIf="lastnameEdit.errors?.required">
                             El apellido es requerido
                         </div>
-                        <div *ngIf="lastnameAdd.errors?.minlength">
+                        <div *ngIf="lastnameEdit.errors?.minlength">
                             El apellido debe tener al menos 4 caracteres
                         </div>
                     </div>
@@ -36,12 +36,12 @@
                 <div class="col-6 my-1">
                     <label for="dni">DNI</label>
                     <input type="dni" class="form-control" formControlName="dni" required>
-                    <div *ngIf="dniAdd.invalid && (dniAdd.dirty || dniAdd.touched)"
+                    <div *ngIf="dniEdit.invalid && (dniEdit.dirty || dniEdit.touched)"
                         class="alert alert-danger my-2">
-                        <div *ngIf="dniAdd.errors?.required">
+                        <div *ngIf="dniEdit.errors?.required">
                             El dni es requerido
                         </div>
-                        <div *ngIf="dniAdd.errors?.minlength">
+                        <div *ngIf="dniEdit.errors?.minlength">
                             El dni debe tener al menos 8 caracteres
                         </div>
                     </div>
@@ -49,15 +49,15 @@
                 <div class="col-6 my-1">
                     <label for="email">Email</label>
                     <input type="email" class="form-control" formControlName="email" required>
-                    <div *ngIf="emailAdd.invalid && (emailAdd.dirty || emailAdd.touched)"
+                    <div *ngIf="emailEdit.invalid && (emailEdit.dirty || emailEdit.touched)"
                         class="alert alert-danger my-2">
-                        <div *ngIf="emailAdd.errors?.required">
+                        <div *ngIf="emailEdit.errors?.required">
                             El email es requerido
                         </div>
-                        <div *ngIf="emailAdd.errors?.minlength">
+                        <div *ngIf="emailEdit.errors?.minlength">
                             El email debe tener al menos 10 caracteres
                         </div>
-                        <div *ngIf="emailAdd.errors?.pattern">
+                        <div *ngIf="emailEdit.errors?.pattern">
                             El valor no es un email
                         </div>
                     </div>
@@ -65,12 +65,12 @@
                 <div class="col-12 my-1">
                     <label for="address">Dirección</label>
                     <input type="text" class="form-control" formControlName="address" required>
-                    <div *ngIf="addressAdd.invalid && (addressAdd.dirty || addressAdd.touched)"
+                    <div *ngIf="addressEdit.invalid && (addressEdit.dirty || addressEdit.touched)"
                         class="alert alert-danger my-2">
-                        <div *ngIf="addressAdd.errors?.required">
+                        <div *ngIf="addressEdit.errors?.required">
                             La dirección es requerida
                         </div>
-                        <div *ngIf="addressAdd.errors?.minlength">
+                        <div *ngIf="addressEdit.errors?.minlength">
                             La dirección debe tener al menos 5 caracteres
                         </div>
                     </div>
@@ -81,18 +81,18 @@
                         <option *ngFor="let localidad of localidades" [value]="localidad.id"> {{ localidad.name }}
                         </option>
                     </select>
-                    <div *ngIf="localidadAdd.invalid && (localidadAdd.dirty || localidadAdd.touched)"
+                    <div *ngIf="localidadEdit.invalid && (localidadEdit.dirty || localidadEdit.touched)"
                         class="alert alert-danger my-2">
-                        <div *ngIf="localidadAdd.errors?.required">
+                        <div *ngIf="localidadEdit.errors?.required">
                             La localidad es requerida
                         </div>
                     </div>
                 </div>
             </div>
             <div class="mt-4 d-flex justify-content-end">
-                <button type="button" class="mx-2 btn btn-outline-danger" (click)="modal.dismiss(false)">Cerrar</button>
+                <button type="button" class="mx-2 btn btn-outline-danger" (click)="modal.close()">Cerrar</button>
                 <button type="submit" class="ml-2 btn btn-success"
-                    [disabled]="!beneficiarioFormAdd.valid">Crear</button>
+                    [disabled]="!beneficiarioFormEdit.valid">Editar</button>
             </div>
         </form>
     </div>

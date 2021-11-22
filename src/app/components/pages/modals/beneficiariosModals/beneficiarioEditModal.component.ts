@@ -6,27 +6,28 @@ import { LocationService } from 'src/app/services/LocationService.service';
 import { EventEmitter } from '@angular/core';
 
 @Component({
-    selector: 'app-beneficiario-add-modal',
-    templateUrl: './beneficiarioAddModal.component.html'
+    selector: 'app-beneficiario-edit-modal',
+    templateUrl: './beneficiarioEditModal.component.html'
 })
 
-export class BeneficiarioAddModalComponent implements OnInit, OnChanges {
+export class BeneficiarioEditModalComponent implements OnInit, OnChanges {
 
     expRegEmail: any = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
-
-    beneficiarioFormAdd = new FormGroup({
+    beneficiarioFormEdit = new FormGroup({
         name: new FormControl('', [Validators.required, Validators.minLength(4)]),
         lastname: new FormControl('', [Validators.required, Validators.minLength(4)]),
         email: new FormControl('', [Validators.required, Validators.pattern(this.expRegEmail), Validators.minLength(10)]),
         dni: new FormControl('', [Validators.required, Validators.minLength(8)]),
         address: new FormControl('', [Validators.required, Validators.minLength(10)]),
         location_id: new FormControl('', [Validators.required]),
-    })
+    });
+    
 
     localidades = [];
 
     @Input() open: boolean = false;
-    @ViewChild('contenidoAdd') contenidoAdd: TemplateRef<any>;
+    @Input() id: number;
+    @ViewChild('contenidoEdit') contenidoEdit: TemplateRef<any>;
     @Output() beneficiaryEvent = new EventEmitter<any>();
     @Output() modalEvent = new EventEmitter<any>();
 
@@ -43,32 +44,42 @@ export class BeneficiarioAddModalComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        console.log(this.open);
         if (this.open) {
-            this.modal.open(this.contenidoAdd).result.then(result => {
+            this.beneficiarioService.showBeneficiary(this.id).subscribe(res => {
+                this.initBeneficiary(res.data);
+            });
+            this.modal.open(this.contenidoEdit).result.then(result => {
             }, reason => {
                 this.modalEvent.emit(false);
-            });
+            });;
         }
     }
 
-    onAdd() {
+    onEdit() {
         // Esto queda para hacer los servicios cuando haga el back-end
-        if (this.beneficiarioFormAdd.valid) {
-            console.log("add");
-            const data = this.beneficiarioFormAdd.value;
-            this.beneficiarioService.storeBeneficiary(data).subscribe(resp => {
+        if (this.beneficiarioFormEdit.valid) {
+            const data = this.beneficiarioFormEdit.value;
+            this.beneficiarioService.updateBeneficiary(data, this.id).subscribe(resp => {
                 this.beneficiaryEvent.emit(resp.data);
-                this.beneficiarioFormAdd.reset();
+                this.beneficiarioFormEdit.reset();
                 this.modal.dismissAll();
             });
         }
     }
 
-    get nameAdd() { return this.beneficiarioFormAdd.get('name') };
-    get lastnameAdd() { return this.beneficiarioFormAdd.get('lastname') };
-    get emailAdd() { return this.beneficiarioFormAdd.get('email') };
-    get addressAdd() { return this.beneficiarioFormAdd.get('address') };
-    get localidadAdd() { return this.beneficiarioFormAdd.get('location_id') };
-    get dniAdd() { return this.beneficiarioFormAdd.get('dni') };
+    private initBeneficiary(data: any): void{
+        this.beneficiarioFormEdit.controls['name'].setValue(data.name);
+        this.beneficiarioFormEdit.controls['lastname'].setValue(data.lastname);
+        this.beneficiarioFormEdit.controls['email'].setValue(data.email);
+        this.beneficiarioFormEdit.controls['address'].setValue(data.address);
+        this.beneficiarioFormEdit.controls['dni'].setValue(data.dni);
+        this.beneficiarioFormEdit.controls['location_id'].setValue(data.location_id);
+    }
+
+    get nameEdit() { return this.beneficiarioFormEdit.get('name') };
+    get lastnameEdit() { return this.beneficiarioFormEdit.get('lastname') };
+    get emailEdit() { return this.beneficiarioFormEdit.get('email') };
+    get addressEdit() { return this.beneficiarioFormEdit.get('address') };
+    get localidadEdit() { return this.beneficiarioFormEdit.get('location_id') };
+    get dniEdit() { return this.beneficiarioFormEdit.get('dni') };
 }

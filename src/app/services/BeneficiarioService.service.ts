@@ -11,7 +11,7 @@ import { EventEmitter } from "events";
 })
 
 export class BeneficiarioService {
-    url_base = "http://localhost:8000/api";
+    private url_base = "http://localhost:8000/api";
     private header;
 
     constructor(private http: HttpClient, private authService: AuthService) {
@@ -20,17 +20,24 @@ export class BeneficiarioService {
             headers: new HttpHeaders()
                 .set('Authorization', `Bearer ${this.authService.getToken()}`)
         }
-
     }
 
-
-    getBeneficiaries(page: number = 1): Observable<any> {
-        return this.http.get(`${this.url_base}/beneficiary?page=${page}`, this.header);
+    getBeneficiaries(page: number = 1, perPage: number = 5): Observable<any> {
+        return this.http.get(`${this.url_base}/beneficiary?page=${page}&perPage=${perPage}`, this.header);
     }
 
-    storeBeneficiary(beneficiario: Beneficiario) {
+    storeBeneficiary(beneficiario: Beneficiario): Observable<any> {
         const body = beneficiario;
         return this.http.post(`${this.url_base}/beneficiary`, body, this.header);
+    }
+
+    showBeneficiary(id: number): Observable<any> {
+        return this.http.get(`${this.url_base}/beneficiary/${id}`, this.header);
+    }
+    
+    updateBeneficiary(beneficiario: Beneficiario, id: number): Observable<any> {
+        const body = beneficiario;
+        return this.http.put(`${this.url_base}/beneficiary/${id}`, body, this.header);
     }
 }
 

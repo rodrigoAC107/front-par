@@ -26,10 +26,12 @@ export class BeneficiarioComponent implements OnInit {
 
   beneficiarios = [];
   localidades = [];
+  idBeneficiary = null;
   page = 1;
   total = 0;
-  perPage = 5;
+  perPage = 10;
   openAdd: boolean;
+  openEdit: boolean;
 
   constructor(
     private modal: NgbModal,
@@ -49,13 +51,13 @@ export class BeneficiarioComponent implements OnInit {
 
     this.route.queryParams.subscribe(params => {
       this.page = parseInt(params.page, 10) || 1;
-      this.getData(this.page);
+      this.getData(this.page, this.perPage);
       window.scrollTo(0, 0);
     });
   }
 
-  getData(page: number = 1) {
-    this.beneficiarioService.getBeneficiaries(page).subscribe((items) => {
+  getData(page: number = 1, perPage: number = 10) {
+    this.beneficiarioService.getBeneficiaries(page, perPage).subscribe((items) => {
       this.beneficiarios = items['data'];
       this.total = items['meta'].total;
       this.perPage = items['meta'].per_page;
@@ -76,23 +78,18 @@ export class BeneficiarioComponent implements OnInit {
     this.getData(this.page);
   }
 
-  edit(contenidoEdit) {
-    this.modal.open(contenidoEdit);
+  showModalEdit(id){
+    this.openEdit = true;
+    this.idBeneficiary = id;
   }
 
-  onEdit() {
-    //TODO: Esto queda para hacer los servicios cuando haga el back-end
-    if (this.beneficiarioFormEdit.valid) {
-      console.log("edit");
-      console.info(this.beneficiarioFormEdit.value);
-    }
+  receiveBeneficiary($event){
+    this.getData(this.page);
   }
-
-  get nameEdit() { return this.beneficiarioFormEdit.get('name') };
-  get lastnameEdit() { return this.beneficiarioFormEdit.get('lastname') };
-  get emailEdit() { return this.beneficiarioFormEdit.get('email') };
-  get addressEdit() { return this.beneficiarioFormEdit.get('address') };
-  get localidadEdit() { return this.beneficiarioFormEdit.get('location_id') };
-  get dniEdit() { return this.beneficiarioFormEdit.get('dni') };
+  
+  receiveModal($event){
+    this.openAdd = false;
+    this.openEdit = false;
+  }
 
 }

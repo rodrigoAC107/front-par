@@ -44,7 +44,7 @@
   cursor: pointer;
 }
 
-
 .ngx-pagination {
-  width: 300px !important;
+  text-align: left;
+  margin-top: 1rem;
 }

@@ -22,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CanActiveLoginGuard } from './helpers/CanActiveLoginGuard';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { BeneficiarioAddModalComponent } from './components/pages/modals/beneficiariosModals/beneficiarioAddModal.component';
+import { BeneficiarioEditModalComponent } from './components/pages/modals/beneficiariosModals/beneficiarioEditModal.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { BeneficiarioAddModalComponent } from './components/pages/modals/benefic
     RecetaComponent,
     FechaComponent,
     ProfileComponent,
-    BeneficiarioAddModalComponent
+    BeneficiarioAddModalComponent,
+    BeneficiarioEditModalComponent
   ],
   imports: [
     BrowserModule,

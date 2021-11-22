@@ -7,7 +7,7 @@ import { AuthService } from './AuthService.service';
 })
 export class LocationService {
 
-  url_base = "http://localhost:8000/api";
+  private url_base = "http://localhost:8000/api";
   private header;
 
   constructor(private http: HttpClient, private authService: AuthService) {

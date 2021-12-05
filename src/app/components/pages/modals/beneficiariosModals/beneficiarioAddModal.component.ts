@@ -1,8 +1,8 @@
 import { Component, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { BeneficiarioService } from 'src/app/services/BeneficiarioService.service';
-import { LocationService } from 'src/app/services/LocationService.service';
+import { BeneficiarioService } from 'src/app/Service/beneficiary-service.service';
+import { LocationService } from 'src/app/Service/location-service.service';
 import { EventEmitter } from '@angular/core';
 
 @Component({

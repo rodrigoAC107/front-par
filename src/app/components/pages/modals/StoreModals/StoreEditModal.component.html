@@ -1,0 +1,109 @@
+<ng-template #contenidoEdit let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Editar Comercio</h4>
+        <button class="close" aria-label="close" type="button" (click)="modal.dismiss(false)">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="storeFormEdit" (ngSubmit)="onEdit()">
+            <div class="row">
+                <div class="col-12 my-1">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" formControlName="name" required>
+                    <div *ngIf="nameEdit.invalid && (nameEdit.dirty || nameEdit.touched)" class="alert alert-danger my-2">
+                        <div *ngIf="nameEdit.errors?.required">
+                            El nombre es requerido
+                        </div>
+                        <div *ngIf="nameEdit.errors?.minlength">
+                            El nombre debe tener al menos 4 caracteres
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 my-1">
+                    <label for="nombre">Dirección</label>
+                    <input type="text" class="form-control" formControlName="address" required>
+                    <div *ngIf="addressEdit.invalid && (addressEdit.dirty || addressEdit.touched)" class="alert alert-danger my-2">
+                        <div *ngIf="addressEdit.errors?.required">
+                            La dirección es requerida
+                        </div>
+                        <div *ngIf="addressEdit.errors?.minlength">
+                            La dirección debe tener al menos 5 caracteres
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 my-1">
+                    <label for="latitude">Latitud</label>
+                    <input type="text" class="form-control" formControlName="latitude" required>
+                    <div *ngIf="latitudeEdit.invalid && (latitudeEdit.dirty || latitudeEdit.touched)" class="alert alert-danger my-2">
+                        <div *ngIf="latitudeEdit.errors?.required">
+                            La dirección es requerida
+                        </div>
+                        <div *ngIf="latitudeEdit.errors?.minlength">
+                            La dirección debe tener al menos 5 caracteres
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 my-1">
+                    <label for="length">Longitud</label>
+                    <input type="text" class="form-control" formControlName="longitude" required>
+                    <div *ngIf="longitudeEdit.invalid && (longitudeEdit.dirty || longitudeEdit.touched)" class="alert alert-danger my-2">
+                        <div *ngIf="longitudeEdit.errors?.required">
+                            La dirección es requerida
+                        </div>
+                        <div *ngIf="longitudeEdit.errors?.minlength">
+                            La dirección debe tener al menos 5 caracteres
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 my-1">
+                    <label for="type_store_id">Tipo de comercio</label>
+                    <select class="form-control" formControlName="type_store_id" required>
+                        <option *ngFor="let typeStore of typeStores" [value]="typeStore.id"> {{ typeStore.name }}
+                        </option>
+                    </select>
+                    <div *ngIf="typeStoreEdit.invalid && (typeStoreEdit.dirty || typeStoreEdit.touched)"
+                        class="alert alert-danger my-2">
+                        <div *ngIf="typeStoreEdit.errors?.required">
+                            La tipo de comercio es requerido es requerida
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 my-1">
+                    <label for="province">Provincia</label>
+                    <select (ngModelChange)="onChangeProvince($event)" class="form-control" formControlName="province_id" required>
+                        <option *ngFor="let province of provinces" [value]="province.id"> {{ province.name }}
+                        </option>
+                    </select>
+                    <div *ngIf="provinceEdit.invalid && (provinceEdit.dirty || provinceEdit.touched)" class="alert alert-danger my-2">
+                        <div *ngIf="provinceEdit.errors?.required">
+                            La dirección es requerida
+                        </div>
+                        <div *ngIf="provinceEdit.errors?.minlength">
+                            La dirección debe tener al menos 5 caracteres
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 my-1">
+                    <label for="location">Localidad</label>
+                    <select class="form-control" formControlName="location_id" required>
+                        <option *ngFor="let location of locations" [value]="location.id"> {{ location.name }}
+                        </option>
+                    </select>
+                    <div *ngIf="locationEdit.invalid && (locationEdit.dirty || locationEdit.touched)" class="alert alert-danger my-2">
+                        <div *ngIf="locationEdit.errors?.required">
+                            La dirección es requerida
+                        </div>
+                        <div *ngIf="locationEdit.errors?.minlength">
+                            La dirección debe tener al menos 5 caracteres
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 d-flex justify-content-end">
+                <button type="button" class="mx-2 btn btn-outline-danger" (click)="modal.dismiss(false)">Cerrar</button>
+                <button type="submit" class="ml-2 btn btn-success" [disabled]="!storeFormEdit.valid">Editar</button>
+            </div>
+        </form>
+    </div>
+</ng-template>

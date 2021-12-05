@@ -23,6 +23,8 @@ import { CanActiveLoginGuard } from './helpers/CanActiveLoginGuard';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { BeneficiarioAddModalComponent } from './components/pages/modals/beneficiariosModals/beneficiarioAddModal.component';
 import { BeneficiarioEditModalComponent } from './components/pages/modals/beneficiariosModals/beneficiarioEditModal.component';
+import { StoreAddModalComponent } from './components/pages/modals/StoreModals/StoreAddModal.component';
+import { StoreEditModalComponent } from './components/pages/modals/StoreModals/StoreEditModal.component';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import { BeneficiarioEditModalComponent } from './components/pages/modals/benefi
     FechaComponent,
     ProfileComponent,
     BeneficiarioAddModalComponent,
-    BeneficiarioEditModalComponent
+    BeneficiarioEditModalComponent,
+    StoreAddModalComponent,
+    StoreEditModalComponent
   ],
   imports: [
     BrowserModule,

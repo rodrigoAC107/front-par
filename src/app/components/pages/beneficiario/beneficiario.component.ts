@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Beneficiario } from 'src/app/models/beneficiario';
-import { BeneficiarioService } from 'src/app/services/BeneficiarioService.service';
+import { BeneficiarioService } from 'src/app/Service/beneficiary-service.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { LocationService } from 'src/app/services/LocationService.service';
+import { LocationService } from 'src/app/Service/location-service.service';
 
 @Component({
   selector: 'app-beneficiario',

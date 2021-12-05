@@ -1,7 +1,7 @@
 import { Injectable, Output } from "@angular/core";
 
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { AuthService } from "./AuthService.service";
+import { AuthService } from "./auth-service.service";
 import { Observable } from "rxjs";
 import { Beneficiario } from "../models/beneficiario";
 import { EventEmitter } from "events";

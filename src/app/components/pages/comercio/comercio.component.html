@@ -1,189 +1,13 @@
-<ng-template #contenidoAdd let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title">Agregar Comercio</h4>
-        <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <form [formGroup]="comercioFormAdd" (ngSubmit)="onAdd()">
-            <div class="row">
-                <div class="col-12 my-1">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" formControlName="name" required>
-                    <div *ngIf="nameAdd.invalid && (nameAdd.dirty || nameAdd.touched)" class="alert alert-danger my-2">
-                        <div *ngIf="nameAdd.errors?.required">
-                            El nombre es requerido
-                        </div>
-                        <div *ngIf="nameAdd.errors?.minlength">
-                            El nombre debe tener al menos 4 caracteres
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 my-1">
-                    <label for="nombre">Dirección</label>
-                    <input type="text" class="form-control" formControlName="address" required>
-                    <div *ngIf="addressAdd.invalid && (addressAdd.dirty || addressAdd.touched)" class="alert alert-danger my-2">
-                        <div *ngIf="addressAdd.errors?.required">
-                            La dirección es requerida
-                        </div>
-                        <div *ngIf="addressAdd.errors?.minlength">
-                            La dirección debe tener al menos 5 caracteres
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 my-1">
-                    <label for="latitude">Latitud</label>
-                    <input type="text" class="form-control" formControlName="latitude" required>
-                    <div *ngIf="latitudeAdd.invalid && (latitudeAdd.dirty || latitudeAdd.touched)" class="alert alert-danger my-2">
-                        <div *ngIf="latitudeAdd.errors?.required">
-                            La dirección es requerida
-                        </div>
-                        <div *ngIf="latitudeAdd.errors?.minlength">
-                            La dirección debe tener al menos 5 caracteres
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 my-1">
-                    <label for="length">Longitud</label>
-                    <input type="text" class="form-control" formControlName="length" required>
-                    <div *ngIf="lengthAdd.invalid && (lengthAdd.dirty || lengthAdd.touched)" class="alert alert-danger my-2">
-                        <div *ngIf="lengthAdd.errors?.required">
-                            La dirección es requerida
-                        </div>
-                        <div *ngIf="lengthAdd.errors?.minlength">
-                            La dirección debe tener al menos 5 caracteres
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 my-1">
-                    <label for="location">Localidad</label>
-                    <input type="text" class="form-control" formControlName="location" required>
-                    <div *ngIf="locationAdd.invalid && (locationAdd.dirty || locationAdd.touched)" class="alert alert-danger my-2">
-                        <div *ngIf="locationAdd.errors?.required">
-                            La dirección es requerida
-                        </div>
-                        <div *ngIf="locationAdd.errors?.minlength">
-                            La dirección debe tener al menos 5 caracteres
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 my-1">
-                    <label for="province">Provincia</label>
-                    <input type="text" class="form-control" formControlName="province" required>
-                    <div *ngIf="provinceAdd.invalid && (provinceAdd.dirty || provinceAdd.touched)" class="alert alert-danger my-2">
-                        <div *ngIf="provinceAdd.errors?.required">
-                            La dirección es requerida
-                        </div>
-                        <div *ngIf="provinceAdd.errors?.minlength">
-                            La dirección debe tener al menos 5 caracteres
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-4 d-flex justify-content-end">
-                <button type="button" class="mx-2 btn btn-outline-danger" (click)="modal.close()">Cerrar</button>
-                <button type="submit" class="ml-2 btn btn-success" [disabled]="!comercioFormAdd.valid">Editar</button>
-            </div>
-        </form>
-    </div>
-</ng-template>
 
-<ng-template #contenidoEdit let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title">Editar Comercio</h4>
-        <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <form [formGroup]="comercioFormEdit" (ngSubmit)="onEdit()">
-            <div class="row">
-                <div class="col-12 my-1">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" formControlName="name" required>
-                    <div *ngIf="nameAdd.invalid && (nameAdd.dirty || nameAdd.touched)" class="alert alert-danger my-2">
-                        <div *ngIf="nameAdd.errors?.required">
-                            El nombre es requerido
-                        </div>
-                        <div *ngIf="nameAdd.errors?.minlength">
-                            El nombre debe tener al menos 4 caracteres
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 my-1">
-                    <label for="nombre">Dirección</label>
-                    <input type="text" class="form-control" formControlName="address" required>
-                    <div *ngIf="addressAdd.invalid && (addressAdd.dirty || addressAdd.touched)" class="alert alert-danger my-2">
-                        <div *ngIf="addressAdd.errors?.required">
-                            La dirección es requerida
-                        </div>
-                        <div *ngIf="addressAdd.errors?.minlength">
-                            La dirección debe tener al menos 5 caracteres
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 my-1">
-                    <label for="latitude">Latitud</label>
-                    <input type="text" class="form-control" formControlName="latitude" required>
-                    <div *ngIf="latitudeEdit.invalid && (latitudeEdit.dirty || latitudeEdit.touched)" class="alert alert-danger my-2">
-                        <div *ngIf="latitudeEdit.errors?.required">
-                            La dirección es requerida
-                        </div>
-                        <div *ngIf="latitudeEdit.errors?.minlength">
-                            La dirección debe tener al menos 5 caracteres
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 my-1">
-                    <label for="length">Longitud</label>
-                    <input type="text" class="form-control" formControlName="length" required>
-                    <div *ngIf="lengthEdit.invalid && (lengthEdit.dirty || lengthEdit.touched)" class="alert alert-danger my-2">
-                        <div *ngIf="lengthEdit.errors?.required">
-                            La dirección es requerida
-                        </div>
-                        <div *ngIf="lengthEdit.errors?.minlength">
-                            La dirección debe tener al menos 5 caracteres
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 my-1">
-                    <label for="location">Localidad</label>
-                    <input type="text" class="form-control" formControlName="location" required>
-                    <div *ngIf="locationEdit.invalid && (locationEdit.dirty || locationEdit.touched)" class="alert alert-danger my-2">
-                        <div *ngIf="locationEdit.errors?.required">
-                            La dirección es requerida
-                        </div>
-                        <div *ngIf="locationEdit.errors?.minlength">
-                            La dirección debe tener al menos 5 caracteres
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 my-1">
-                    <label for="province">Provincia</label>
-                    <input type="text" class="form-control" formControlName="province" required>
-                    <div *ngIf="provinceEdit.invalid && (provinceEdit.dirty || provinceEdit.touched)" class="alert alert-danger my-2">
-                        <div *ngIf="provinceEdit.errors?.required">
-                            La dirección es requerida
-                        </div>
-                        <div *ngIf="provinceEdit.errors?.minlength">
-                            La dirección debe tener al menos 5 caracteres
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-4 d-flex justify-content-end">
-                <button type="button" class="mx-2 btn btn-outline-danger" (click)="modal.close()">Cerrar</button>
-                <button type="submit" class="ml-2 btn btn-success" [disabled]="!comercioFormEdit.valid">Crear</button>
-            </div>
-        </form>
-    </div>
-</ng-template>
+<app-store-add-modal (storeEvent)="receiveStore($event)" (modalEvent)="receiveModal($event)" [open]="openAdd"></app-store-add-modal>
+<app-store-edit-modal (storeEvent)="receiveStore($event)" (modalEvent)="receiveModal($event)" [open]="openEdit" [id]="idStore"></app-store-edit-modal>
+
+
 <div class="general-content">
     <div class="title">
         <h1>Comercios</h1>
         <div class="search">
-            <button class="search__add" (click)="add(contenidoAdd)">
+            <button class="search__add" (click)="openAdd = true">
                 <i class="far fa-plus-square fa-lg"></i>
                 Agregar Comercio
             </button>
@@ -195,24 +19,36 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>Nombre</th>
                     <th>Direccion</th>
                     <th>Tipo</th>
+                    <th>Provincia</th>
                     <th>Telefono</th>
                     <th colspan="2">Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Chango Más</td>
-                    <td>Onctiva</td>
-                    <td>Supermercado</td>
-                    <td>4245514654</td>
+                <tr *ngFor="let store of stores | paginate: { itemsPerPage: perPage, currentPage: page, totalItems: total }">
+                    <td>{{ store.id }}</td>
+                    <td>{{ store.name }}</td>
+                    <td>{{ store.address }}</td>
+                    <td>{{ store.type_store_id }}</td>
+                    <td>{{ store.province_id }} </td>
+                    <td>{{ store.phone }}</td>
                     <td>
-                        <i class="far fa-edit fa-lg" (click)="edit(contenidoEdit)"></i>
+                        <i class="far fa-edit fa-lg" (click)="showModalEdit(store.id)"></i>
                         <i class="far fa-trash-alt fa-lg"></i>
                     </td>
                 </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="7">
+                        <pagination-controls [previousLabel]="'Ant'" [nextLabel]="'Sig'" (pageChange)="pageChanged($event)">
+                        </pagination-controls>
+                    </td>
+                </tr>
+            </tfoot>
         </table>
 </div>

@@ -1,0 +1,121 @@
+<ng-template #contenidoAdd let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Agregar Comercio</h4>
+        <button class="close" aria-label="close" type="button" (click)="modal.dismiss(false)">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="storeFormAdd" (ngSubmit)="onAdd()">
+            <div class="row">
+                <div class="col-12 my-1">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" formControlName="name" required>
+                    <div *ngIf="nameAdd.invalid && (nameAdd.dirty || nameAdd.touched)" class="alert alert-danger my-2">
+                        <div *ngIf="nameAdd.errors?.required">
+                            El nombre es requerido
+                        </div>
+                        <div *ngIf="nameAdd.errors?.minlength">
+                            El nombre debe tener al menos 4 caracteres
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 my-1">
+                    <label for="nombre">Dirección</label>
+                    <input type="text" class="form-control" formControlName="address" required>
+                    <div *ngIf="addressAdd.invalid && (addressAdd.dirty || addressAdd.touched)"
+                        class="alert alert-danger my-2">
+                        <div *ngIf="addressAdd.errors?.required">
+                            La dirección es requerida
+                        </div>
+                        <div *ngIf="addressAdd.errors?.minlength">
+                            La dirección debe tener al menos 5 caracteres
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 my-1">
+                    <label for="latitude">Latitud</label>
+                    <input type="text" class="form-control" formControlName="latitude" required>
+                    <div *ngIf="latitudeAdd.invalid && (latitudeAdd.dirty || latitudeAdd.touched)"
+                        class="alert alert-danger my-2">
+                        <div *ngIf="latitudeAdd.errors?.required">
+                            La latitud es requerida
+                        </div>
+                        <div *ngIf="latitudeAdd.errors?.minlength">
+                            La latitud debe tener al menos 5 caracteres
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 my-1">
+                    <label for="length">Longitud</label>
+                    <input type="text" class="form-control" formControlName="longitude" required>
+                    <div *ngIf="longitudeAdd.invalid && (longitudeAdd.dirty || longitudeAdd.touched)"
+                        class="alert alert-danger my-2">
+                        <div *ngIf="longitudeAdd.errors?.required">
+                            La longitud es requerida
+                        </div>
+                        <div *ngIf="longitudeAdd.errors?.minlength">
+                            La longitud debe tener al menos 5 caracteres
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 my-1">
+                    <label for="length">Teléfono</label>
+                    <input type="text" class="form-control" formControlName="phone" required>
+                    <div *ngIf="phoneAdd.invalid && (phoneAdd.dirty || phoneAdd.touched)"
+                        class="alert alert-danger my-2">
+                        <div *ngIf="phoneAdd.errors?.required">
+                            El teléfono es requerida
+                        </div>
+                        <div *ngIf="phoneAdd.errors?.minlength">
+                            El teléfono debe tener al menos 5 caracteres
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 my-1">
+                    <label for="type_store_id">Tipo de comercio</label>
+                    <select class="form-control" formControlName="type_store_id" required>
+                        <option *ngFor="let typeStore of typeStores" [value]="typeStore.id"> {{ typeStore.name }}
+                        </option>
+                    </select>
+                    <div *ngIf="typeStoreAdd.invalid && (typeStoreAdd.dirty || typeStoreAdd.touched)"
+                        class="alert alert-danger my-2">
+                        <div *ngIf="typeStoreAdd.errors?.required">
+                            La tipo de comercio es requerido es requerida
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 my-1">
+                    <label for="province">Provincia</label>
+                    <select (ngModelChange)="onChangeProvince($event)" class="form-control" formControlName="province_id" required>
+                        <option *ngFor="let province of provinces" [value]="province.id"> {{ province.name }}
+                        </option>
+                    </select>
+                    <div *ngIf="provinceAdd.invalid && (provinceAdd.dirty || provinceAdd.touched)"
+                        class="alert alert-danger my-2">
+                        <div *ngIf="provinceAdd.errors?.required">
+                            La provincia es requerida
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 my-1">
+                    <label for="location">Localidad</label>
+                    <select class="form-control" formControlName="location_id" required>
+                        <option *ngFor="let location of locations" [value]="location.id"> {{ location.name }}
+                        </option>
+                    </select>
+                    <div *ngIf="locationAdd.invalid && (locationAdd.dirty || locationAdd.touched)"
+                        class="alert alert-danger my-2">
+                        <div *ngIf="locationAdd.errors?.required">
+                            La localidad es requerida
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 d-flex justify-content-end">
+                <button type="button" class="mx-2 btn btn-outline-danger" (click)="modal.dismiss(false)">Cerrar</button>
+                <button type="submit" class="ml-2 btn btn-success" [disabled]="!storeFormAdd.valid">Agregar</button>
+            </div>
+        </form>
+    </div>
+</ng-template>

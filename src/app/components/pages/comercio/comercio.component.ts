@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { StoreService } from 'src/app/Service/store-service.service';
 
 @Component({
   selector: 'app-comercio',
@@ -9,64 +11,65 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ComercioComponent implements OnInit {
 
-  comercioFormAdd = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    address: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    latitude: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    length: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    location: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    province: new FormControl('', [Validators.required, Validators.minLength(5)]),
-  })
-  comercioFormEdit = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    address: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    latitude: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    length: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    location: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    province: new FormControl('', [Validators.required, Validators.minLength(5)]),
-  })
+  stores = [];
+  idStore = null;
+  page = 1;
+  total = 0;
+  perPage = 5;
+  openAdd: boolean;
+  openEdit: boolean;
 
-  constructor(private modal:NgbModal) { }
+
+  constructor(
+    private modal: NgbModal,
+    private storeService: StoreService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.page = parseInt(params.page, 5) || 1;
+      this.getData(this.page, this.perPage);
+      window.scrollTo(0, 0);
+    });
+    console.log(this.stores);
   }
 
-  add(contenidoAdd){
-    this.modal.open(contenidoAdd);
-  }
-  edit(contenidoEdit){
-    this.modal.open(contenidoEdit);
+  getData(page: number = 1, perPage: number = 5) {
+    this.storeService.getStores(page, perPage).subscribe((items) => {
+      this.stores = items['data'];
+      this.total = items['meta'].total;
+      this.perPage = items['meta'].per_page;
+    });
   }
 
-  onAdd(){
-    // Esto queda para hacer los servicios cuando haga el back-end
-    if(this.comercioFormAdd.valid){
-      console.log("add");
-      console.info(this.comercioFormAdd.value);
-    }
+  pageChanged(page) {
+    this.page = page;
+    const queryParams: Params = { page };
+    this.router.navigate(
+      [],
+      {
+        relativeTo: this.route,
+        queryParams
+      }
+    );
+    this.getData(this.page);
+  }
+
+  showModalEdit(id){
+    this.openEdit = true;
+    this.idStore = id;
+  }
+
+  receiveStore($event){
+    this.getData(this.page);
   }
   
-  onEdit(){
-    // Esto queda para hacer los servicios cuando haga el back-end
-    if(this.comercioFormEdit.valid){
-      console.log("edit");
-      console.info(this.comercioFormEdit.value);
-    }
+  receiveModal($event){
+    this.openAdd = false;
+    this.openEdit = false;
   }
-
-  get nameAdd() { return this.comercioFormAdd.get('name')};
-  get addressAdd() { return this.comercioFormAdd.get('address')};
-  get latitudeAdd() { return this.comercioFormAdd.get('latitude')};
-  get lengthAdd() { return this.comercioFormAdd.get('length')};
-  get locationAdd() { return this.comercioFormAdd.get('location')};
-  get provinceAdd() { return this.comercioFormAdd.get('province')};
-
-  get nameEdit() { return this.comercioFormAdd.get('name')};
-  get addressEdit() { return this.comercioFormAdd.get('address')};
-  get latitudeEdit() { return this.comercioFormAdd.get('latitude')};
-  get lengthEdit() { return this.comercioFormAdd.get('length')};
-  get locationEdit() { return this.comercioFormAdd.get('location')};
-  get provinceEdit() { return this.comercioFormAdd.get('province')};
 
 
 }
